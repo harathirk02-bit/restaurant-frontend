@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from fastapi import (
     APIRouter,
     Depends,
@@ -9,11 +10,17 @@ from fastapi.security import (
     HTTPAuthorizationCredentials
 )
 
+=======
+from fastapi import APIRouter, Depends, HTTPException
+>>>>>>> 565c54d28d1d670ecf7b077dc6ed5b52709021ce
 from sqlalchemy.orm import Session
 
 from database import SessionLocal
 from models.menu_item import MenuItem
+<<<<<<< HEAD
 
+=======
+>>>>>>> 565c54d28d1d670ecf7b077dc6ed5b52709021ce
 from schemas.menu_item import (
     MenuItemCreate,
     MenuItemUpdate,
@@ -25,7 +32,11 @@ router = APIRouter(
     tags=["Menu"]
 )
 
+<<<<<<< HEAD
 # DATABASE
+=======
+# DATABASE CONNECTION
+>>>>>>> 565c54d28d1d670ecf7b077dc6ed5b52709021ce
 def get_db():
     db = SessionLocal()
     try:
@@ -33,6 +44,7 @@ def get_db():
     finally:
         db.close()
 
+<<<<<<< HEAD
 # TOKEN SECURITY
 security = HTTPBearer()
 
@@ -60,17 +72,29 @@ def get_menu_items(
 
     items = db.query(MenuItem).all()
 
+=======
+# GET ALL MENU ITEMS
+@router.get("/", response_model=list[MenuItemResponse])
+def get_menu_items(db: Session = Depends(get_db)):
+    items = db.query(MenuItem).all()
+>>>>>>> 565c54d28d1d670ecf7b077dc6ed5b52709021ce
     return items
 
 # ADD MENU ITEM
 @router.post("/", response_model=MenuItemResponse)
 def create_menu_item(
     item: MenuItemCreate,
+<<<<<<< HEAD
     db: Session = Depends(get_db),
     token: str = Depends(verify_token)
 ):
 
     new_item = MenuItem(**item.dict())
+=======
+    db: Session = Depends(get_db)
+):
+    new_item = MenuItem(**item.model_dump())
+>>>>>>> 565c54d28d1d670ecf7b077dc6ed5b52709021ce
 
     db.add(new_item)
     db.commit()
@@ -83,6 +107,7 @@ def create_menu_item(
 def update_menu_item(
     item_id: int,
     updated_item: MenuItemUpdate,
+<<<<<<< HEAD
     db: Session = Depends(get_db),
     token: str = Depends(verify_token)
 ):
@@ -90,6 +115,11 @@ def update_menu_item(
     item = db.query(MenuItem).filter(
         MenuItem.id == item_id
     ).first()
+=======
+    db: Session = Depends(get_db)
+):
+    item = db.query(MenuItem).filter(MenuItem.id == item_id).first()
+>>>>>>> 565c54d28d1d670ecf7b077dc6ed5b52709021ce
 
     if not item:
         raise HTTPException(
@@ -112,6 +142,7 @@ def update_menu_item(
 @router.delete("/{item_id}")
 def delete_menu_item(
     item_id: int,
+<<<<<<< HEAD
     db: Session = Depends(get_db),
     token: str = Depends(verify_token)
 ):
@@ -119,6 +150,11 @@ def delete_menu_item(
     item = db.query(MenuItem).filter(
         MenuItem.id == item_id
     ).first()
+=======
+    db: Session = Depends(get_db)
+):
+    item = db.query(MenuItem).filter(MenuItem.id == item_id).first()
+>>>>>>> 565c54d28d1d670ecf7b077dc6ed5b52709021ce
 
     if not item:
         raise HTTPException(
@@ -129,6 +165,10 @@ def delete_menu_item(
     db.delete(item)
     db.commit()
 
+<<<<<<< HEAD
     return {
         "message": "Menu item deleted successfully"
     }
+=======
+    return {"message": "Menu item deleted successfully"}
+>>>>>>> 565c54d28d1d670ecf7b077dc6ed5b52709021ce
