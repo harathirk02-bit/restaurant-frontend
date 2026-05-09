@@ -1,11 +1,8 @@
 __pycache__/
 *.pyc
-<<<<<<< HEAD
 .env
 restaurant.db
 venv/
-=======
 restaurant.db
 .env
 venv/
->>>>>>> 565c54d28d1d670ecf7b077dc6ed5b52709021ce
