@@ -1,4 +1,8 @@
-node_modules
+__pycache__/
+*.pyc
 .env
-.env.local
-dist
+restaurant.db
+venv/
+restaurant.db
+.env
+venv/
