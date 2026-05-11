@@ -3,6 +3,6 @@ __pycache__/
 .env
 restaurant.db
 venv/
-restaurant.db
-.env
-venv/
+node_modules
+.vercel/
+
