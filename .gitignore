@@ -5,4 +5,4 @@ restaurant.db
 venv/
 node_modules
 .vercel/
-
+node_modules
