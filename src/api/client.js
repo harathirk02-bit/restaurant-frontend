@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://restaurant-management-system-k8a1.onrender.com",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 API.interceptors.request.use((config) => {
