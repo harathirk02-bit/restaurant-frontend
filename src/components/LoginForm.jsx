@@ -7,7 +7,7 @@ import API from "../api/client";
 function LoginForm() {
 
   const [form, setForm] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -53,9 +53,9 @@ function LoginForm() {
       <form onSubmit={handleSubmit}>
 
         <input
-          type="text"
-          name="username"
-          placeholder="Username"
+          type="email"
+          name="email"
+          placeholder="email"
           onChange={handleChange}
         />
 
