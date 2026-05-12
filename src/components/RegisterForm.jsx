@@ -37,7 +37,15 @@ function RegisterForm() {
 
     } catch (error) {
 
-      alert("Registration Failed");
+      console.log(error);
+      console.log(error.response);
+
+      alert(
+         error.response?.data?.detail ||
+         error.message ||
+         "Registration Failed"
+      );
+
     }
   };
 
